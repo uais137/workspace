@@ -51,23 +51,50 @@ npm run lint                    # Ensure no linting errors
 echo "Starting: [task_name] at $(date)" >> WORK_LOG.md
 ```
 
-### Git Sync Commands for Build Process
+### Environment Setup
 ```bash
+# FIRST TIME SETUP:
+cp .env.template .env          # Copy template to .env
+# Edit .env with your actual credentials
+
+# LOAD ENVIRONMENT VARIABLES:
+source .env
+
 # STANDARD GIT OPERATIONS:
 git add .                        # Stage all changes
 git commit -m "descriptive message"  # Commit with clear message
 
-# PUSH TO REMOTE (when standard push fails):
-git push https://uais137:YOUR_TOKEN@github.com/uais137/workspace.git main
+# PUSH TO REMOTE (using environment variables):
+git push https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_USERNAME/workspace.git main
 
 # ALTERNATIVE PUSH METHODS:
 git push -u origin main          # Set upstream and push
 git push origin main             # Standard push to origin
 
-# CREDENTIAL CONFIGURATION:
+# CREDENTIAL CONFIGURATION (using environment variables):
 git config --global credential.helper store
-git config --global user.name "uais137"
-git config --global user.email "unifiedaisolutions@gmail.com"
+git config --global user.name "$GITHUB_USERNAME"
+git config --global user.email "$GITHUB_EMAIL"
+```
+
+### Application Login Commands
+```bash
+# LOAD ENVIRONMENT VARIABLES:
+source .env
+
+# DATABASE CONNECTION:
+psql -h $DB_HOST -p $DB_PORT -U $DB_USERNAME -d $DB_NAME
+
+# REDIS CONNECTION:
+redis-cli -h $REDIS_HOST -p $REDIS_PORT -a $REDIS_PASSWORD
+
+# APPLICATION STARTUP:
+PORT=$APP_PORT npm start
+
+# ENVIRONMENT REFERENCE:
+echo "GitHub: $GITHUB_USERNAME"
+echo "Database: $DB_USERNAME@$DB_HOST:$DB_PORT/$DB_NAME"
+echo "App Port: $APP_PORT"
 ```
 
 ### Step 2.2: Write Code in Small Chunks
