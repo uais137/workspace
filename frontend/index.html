@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified AI Solutions - SaaS Platform Authentication</title>
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Background Pattern -->
+        <div class="bg-pattern"></div>
+        
+        <!-- Header -->
+        <div class="auth-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Unified AI Solutions</h1>
+                    <p class="tagline">Enterprise SaaS Platform</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="auth-content">
+            <!-- Level 0 God Admin Login -->
+            <div id="god-login" class="auth-form active">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h2>Level 0 God Access</h2>
+                    <p class="form-subtitle">Platform Administrator Authentication</p>
+                </div>
+                
+                <form id="god-login-form" class="login-form">
+                    <div class="input-wrapper">
+                        <div class="input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <input type="text" id="god-username" placeholder="God Admin Username" required>
+                            <label for="god-username">God Admin Username</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <div class="input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <input type="password" id="god-password" placeholder="Master Password" required>
+                            <label for="god-password">Master Password</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <div class="input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <input type="text" id="god-2fa" placeholder="2FA Authentication Code" required>
+                            <label for="god-2fa">2FA Authentication Code</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn god-btn">
+                        <span class="btn-icon">
+                            <i class="fas fa-unlock"></i>
+                        </span>
+                        <span class="btn-text">Access God Panel</span>
+                        <div class="btn-loader">
+                            <div class="spinner"></div>
+                        </div>
+                    </button>
+                </form>
+                
+                <div class="auth-footer">
+                    <div class="security-notice">
+                        <i class="fas fa-lock"></i>
+                        <span>Unified AI Solutions Internal Use Only</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- God Dashboard -->
+            <div id="god-dashboard" class="dashboard hidden">
+                <div class="dashboard-header">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="user-details">
+                            <h3>God Admin Panel</h3>
+                            <p>Super Administrator Access</p>
+                        </div>
+                    </div>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="welcome-section">
+                        <h2>Welcome to God Panel</h2>
+                        <p>Manage the entire SaaS platform from this central control panel</p>
+                    </div>
+                    
+                    <div class="action-grid">
+                        <div class="action-card create-business" onclick="showCreateBusiness()">
+                            <div class="card-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Create Business Account</h3>
+                                <p>Setup new client organization with owner account</p>
+                            </div>
+                            <div class="card-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="action-card switch-company" onclick="showCompanySwitch()">
+                            <div class="card-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Switch Company Profile</h3>
+                                <p>Access client organizations for support</p>
+                            </div>
+                            <div class="card-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="action-card analytics">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Platform Analytics</h3>
+                                <p>System-wide metrics and performance data</p>
+                            </div>
+                            <div class="card-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="action-card settings">
+                            <div class="card-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>System Settings</h3>
+                                <p>Platform configuration and management</p>
+                            </div>
+                            <div class="card-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Creation Form -->
+            <div id="create-business" class="auth-form">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h2>Create Business Account</h2>
+                    <p class="form-subtitle">Setup new client organization</p>
+                </div>
+                
+                <form id="business-creation-form" class="creation-form">
+                    <div class="form-section">
+                        <h3>Company Information</h3>
+                        <div class="form-row">
+                            <div class="input-wrapper">
+                                <div class="input-group">
+                                    <div class="input-icon">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                    <input type="text" id="company-name" placeholder="Company Name" required>
+                                    <label for="company-name">Company Name</label>
+                                </div>
+                            </div>
+                            
+                            <div class="input-wrapper">
+                                <div class="input-group">
+                                    <div class="input-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <input type="text" id="company-domain" placeholder="company.com">
+                                    <label for="company-domain">Company Domain (optional)</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-wrapper">
+                            <div class="select-group">
+                                <div class="input-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <select id="company-size" required>
+                                    <option value="">Select Company Size</option>
+                                    <option value="1-10">1-10 employees</option>
+                                    <option value="11-50">11-50 employees</option>
+                                    <option value="51-200">51-200 employees</option>
+                                    <option value="201-1000">201-1000 employees</option>
+                                    <option value="1000+">1000+ employees</option>
+                                </select>
+                                <label for="company-size">Company Size</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Business Owner Account</h3>
+                        <div class="form-row">
+                            <div class="input-wrapper">
+                                <div class="input-group">
+                                    <div class="input-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <input type="text" id="owner-name" placeholder="Owner Full Name" required>
+                                    <label for="owner-name">Owner Full Name</label>
+                                </div>
+                            </div>
+                            
+                            <div class="input-wrapper">
+                                <div class="input-group">
+                                    <div class="input-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <input type="email" id="owner-email" placeholder="owner@company.com" required>
+                                    <label for="owner-email">Owner Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="input-wrapper">
+                                <div class="input-group">
+                                    <div class="input-icon">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <input type="password" id="owner-password" placeholder="Temporary Password" required>
+                                    <label for="owner-password">Temporary Password</label>
+                                </div>
+                            </div>
+                            
+                            <div class="input-wrapper">
+                                <div class="input-group">
+                                    <div class="input-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <input type="tel" id="owner-phone" placeholder="+1 (555) 123-4567">
+                                    <label for="owner-phone">Phone Number</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="back-btn" onclick="showGodDashboard()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back to Dashboard</span>
+                        </button>
+                        
+                        <button type="submit" class="auth-btn create-btn">
+                            <span class="btn-icon">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="btn-text">Create Business Account</span>
+                            <div class="btn-loader">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Company Switch Interface -->
+            <div id="company-switch" class="auth-form">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h2>Switch Company Profile</h2>
+                    <p class="form-subtitle">Access client organization as admin</p>
+                </div>
+                
+                <div class="search-section">
+                    <div class="input-wrapper">
+                        <div class="input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <input type="text" id="company-search" placeholder="Search companies...">
+                            <label for="company-search">Search Companies</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="company-list" id="company-list">
+                    <!-- Sample companies -->
+                    <div class="company-item">
+                        <div class="company-avatar">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="company-info">
+                            <h4>Acme Corporation</h4>
+                            <p>acme.com • 150 employees</p>
+                            <span class="status active">Active</span>
+                        </div>
+                        <button class="switch-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Switch</span>
+                        </button>
+                    </div>
+                    
+                    <div class="company-item">
+                        <div class="company-avatar">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <div class="company-info">
+                            <h4>Tech Innovations Ltd</h4>
+                            <p>techinnovations.com • 75 employees</p>
+                            <span class="status active">Active</span>
+                        </div>
+                        <button class="switch-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Switch</span>
+                        </button>
+                    </div>
+                    
+                    <div class="company-item">
+                        <div class="company-avatar">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="company-info">
+                            <h4>Global Retail Solutions</h4>
+                            <p>globalretail.com • 300 employees</p>
+                            <span class="status pending">Setup Pending</span>
+                        </div>
+                        <button class="switch-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Switch</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="back-btn" onclick="showGodDashboard()">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/auth.js"></script>
+</body>
+</html>
