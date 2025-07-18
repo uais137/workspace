@@ -51,6 +51,25 @@ npm run lint                    # Ensure no linting errors
 echo "Starting: [task_name] at $(date)" >> WORK_LOG.md
 ```
 
+### Git Sync Commands for Build Process
+```bash
+# STANDARD GIT OPERATIONS:
+git add .                        # Stage all changes
+git commit -m "descriptive message"  # Commit with clear message
+
+# PUSH TO REMOTE (when standard push fails):
+git push https://uais137:YOUR_TOKEN@github.com/uais137/workspace.git main
+
+# ALTERNATIVE PUSH METHODS:
+git push -u origin main          # Set upstream and push
+git push origin main             # Standard push to origin
+
+# CREDENTIAL CONFIGURATION:
+git config --global credential.helper store
+git config --global user.name "uais137"
+git config --global user.email "unifiedaisolutions@gmail.com"
+```
+
 ### Step 2.2: Write Code in Small Chunks
 ```bash
 # AFTER EVERY 20-30 LINES OF CODE:
