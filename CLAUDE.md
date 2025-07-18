@@ -344,4 +344,98 @@ Your code session is successful when:
 
 ---
 
+---
+
+## 📁 PROJECT STRUCTURE & FILE LOCATIONS
+
+### SaaS Platform Directory Structure
+Based on SaaS-Development-Guide.md, use this EXACT structure for all file creation:
+
+```
+/workspace/
+├── frontend/           # React + TypeScript frontend
+│   ├── src/
+│   │   ├── components/    # Reusable UI components
+│   │   ├── pages/         # Page-level components
+│   │   ├── auth/          # Authentication components
+│   │   ├── modules/       # Module-specific components (CRM, LeadGen, etc.)
+│   │   ├── hooks/         # Custom React hooks
+│   │   ├── context/       # React context providers
+│   │   ├── utils/         # Utility functions
+│   │   └── styles/        # Global styles and Tailwind config
+│   ├── public/           # Static assets
+│   └── package.json      # Frontend dependencies
+│
+├── backend/            # FastAPI Python backend
+│   ├── app/
+│   │   ├── main.py          # FastAPI application entry
+│   │   ├── auth/            # Authentication module
+│   │   ├── crm/             # CRM module
+│   │   ├── leadgen/         # Lead generation module
+│   │   ├── kanban/          # Kanban board module
+│   │   ├── documents/       # Document management module
+│   │   ├── core/            # Core utilities and models
+│   │   ├── database/        # Database models and connection
+│   │   └── api/             # API route definitions
+│   └── requirements.txt     # Python dependencies
+│
+├── database/           # Database scripts and migrations
+│   ├── migrations/       # Alembic migrations
+│   ├── init/            # Initial database setup
+│   └── backups/         # Database backups
+│
+├── api/                # API documentation and schemas
+│   ├── schemas/         # Pydantic models
+│   └── docs/            # API documentation
+│
+├── scripts/            # Development and deployment scripts
+│   ├── deploy.sh        # Deployment script
+│   ├── backup.sh        # Backup script
+│   └── setup.sh         # Environment setup
+│
+├── config/             # Configuration files
+│   ├── nginx/           # Nginx configuration
+│   ├── redis/           # Redis configuration
+│   └── docker/          # Docker configurations
+│
+├── tests/              # Test files
+│   ├── frontend/        # Frontend tests
+│   ├── backend/         # Backend tests
+│   └── integration/     # Integration tests
+│
+├── docs/               # Project documentation
+│   ├── api/             # API documentation
+│   ├── user/            # User guides
+│   └── development/     # Development guides
+│
+├── uploads/            # User uploaded files
+├── temp/               # Temporary files
+├── shared/             # Shared utilities
+└── logs/               # Application logs
+```
+
+### Authentication Module Structure (Current Task)
+```
+/workspace/frontend/src/auth/
+├── components/
+│   ├── GodLogin.tsx         # Level 0 God Admin login
+│   ├── BusinessCreation.tsx # Business owner creation form
+│   ├── CompanySwitch.tsx    # Company profile switching
+│   └── UserManagement.tsx   # User role management
+├── pages/
+│   ├── AuthPage.tsx         # Main authentication page
+│   └── GodDashboard.tsx     # God admin dashboard
+├── hooks/
+│   ├── useAuth.tsx          # Authentication hook
+│   └── useGodPermissions.tsx # God-level permissions
+├── context/
+│   └── AuthContext.tsx      # Authentication context
+└── styles/
+    └── auth.css             # Authentication styles
+```
+
+### ALWAYS use this structure when creating files. Never deviate from these paths.
+
+---
+
 **THIS DOCUMENT IS LAW. FOLLOW IT EXACTLY.**
